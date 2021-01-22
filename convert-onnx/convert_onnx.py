@@ -32,23 +32,21 @@ if __name__ == "__main__":
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     parser = argparse.ArgumentParser()
     parser.add_argument('--net_type', default='yolov5s', choices=['yolov5s', 'yolov5l', 'yolov5m', 'yolov5x'])
+    parser.add_argument('--num_classes', default=80, type=int)
     args = parser.parse_args()
     print(args)
 
-    with open('coco.names', 'rt') as f:
-        classes = f.read().rstrip('\n').split('\n')
-    num_classes = len(classes)
     # Set up model
     anchors = [[10, 13, 16, 30, 33, 23], [30, 61, 62, 45, 59, 119], [116, 90, 156, 198, 373, 326]]
 
     if args.net_type == 'yolov5s':
-        net = my_yolov5s(num_classes, anchors=anchors, training=False)
+        net = my_yolov5s(args.num_classes, anchors=anchors, training=False)
     elif args.net_type == 'yolov5l':
-        net = my_yolov5l(num_classes, anchors=anchors, training=False)
+        net = my_yolov5l(args.num_classes, anchors=anchors, training=False)
     elif args.net_type == 'yolov5m':
-        net = my_yolov5m(num_classes, anchors=anchors, training=False)
+        net = my_yolov5m(args.num_classes, anchors=anchors, training=False)
     else:
-        net = my_yolov5x(num_classes, anchors=anchors, training=False)
+        net = my_yolov5x(args.num_classes, anchors=anchors, training=False)
 
     net.to(device)
     net.eval()
@@ -68,7 +66,7 @@ if __name__ == "__main__":
         else:
             own_state[nameb].copy_(a)
 
-    onnx_model = My_YOLOv5s_extract(net, num_classes, anchors=anchors).to(device).eval()
+    onnx_model = My_YOLOv5s_extract(net, args.num_classes, anchors=anchors).to(device).eval()
     onnx_param = onnx_model.state_dict()
 
     print(len(utl_param), len(onnx_param))
