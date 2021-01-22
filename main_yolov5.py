@@ -102,7 +102,7 @@ class yolov5():
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--imgpath", type=str, default='/home/wangbo/Desktop/data/yolo/yolov34-cpp-opencv-dnn-master/bus.jpg', help="image path")
+    parser.add_argument("--imgpath", type=str, default='bus.jpg', help="image path")
     parser.add_argument('--net_type', default='yolov5s', choices=['yolov5s', 'yolov5l', 'yolov5m', 'yolov5x'])
     parser.add_argument('--confThreshold', default=0.5, type=float, help='class confidence')
     parser.add_argument('--nmsThreshold', default=0.5, type=float, help='nms iou thresh')
