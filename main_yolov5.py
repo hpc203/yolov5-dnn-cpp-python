@@ -5,7 +5,7 @@ import numpy as np
 class yolov5():
     def __init__(self, yolo_type, confThreshold=0.5, nmsThreshold=0.5, objThreshold=0.5):
         with open('coco.names', 'rt') as f:
-            self.classes = f.read().rstrip('\n').split('\n')
+            self.classes = f.read().rstrip('\n').split('\n')    ###这个是在coco数据集上训练的模型做opencv部署的，如果你在自己的数据集上训练出的模型做opencv部署，那么需要修改self.classes
         self.colors = [np.random.randint(0, 255, size=3).tolist() for _ in range(len(self.classes))]
         num_classes = len(self.classes)
         anchors = [[10, 13, 16, 30, 33, 23], [30, 61, 62, 45, 59, 119], [116, 90, 156, 198, 373, 326]]
