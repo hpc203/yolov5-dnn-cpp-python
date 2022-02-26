@@ -17,3 +17,8 @@ python版本的主程序是main_yolov5.py，C++版本的主程序是main_yolo.cp
 
 在编写这套程序时，遇到的bug和解决办法，可以阅读我的csdn博客
 https://blog.csdn.net/nihate/article/details/112731327
+
+
+2022年2月26日，看到https://github.com/ultralytics/yolov5 在最近更新的v6.1版本的，
+我编写了分别使用OpenCV、ONNXRuntime部署yolov5-v6.1目标检测，包含C++和Python两个版本的程序
+源码地址是： https://github.com/hpc203/yolov5-v6.1-opencv-onnxrun
